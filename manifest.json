@@ -1,0 +1,16 @@
+﻿{
+  "name": "LandscapeFlow Pro",
+  "short_name": "LandscapeFlow",
+  "description": "Landscaping Management System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><text y='1.5em' font-size='180'>🌿</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
