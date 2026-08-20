@@ -1,567 +1,914 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LandscapeFlow Pro</title>
-    <meta name="description" content="Landscaping Management System">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BlueFlameDesigns — Custom Jewelry &amp; Clothing, made by hand</title>
+<meta name="description" content="BlueFlameDesigns (BFD) — custom-made jewelry and custom-made clothing, handcrafted one piece at a time in Charlotte, NC. Commissions open." />
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-        .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 500px;
-            padding: 40px;
-        }
+<style>
+  :root{
+    --void:#0A0E1A;
+    --ink:#0F1524;
+    --panel:#141B2E;
+    --line:rgba(255,255,255,.09);
+    --flame-violet:#7C3AED;
+    --flame-blue:#2563EB;
+    --flame-cyan:#38E1F0;
+    --ember:#E8B04B;
+    --ember-soft:#F0C878;
+    --text:#E7EAF2;
+    --muted:#96A0B5;
+    --faint:#5E687E;
+    --flame-grad:linear-gradient(120deg,var(--flame-violet) 0%,var(--flame-blue) 42%,var(--flame-cyan) 100%);
+    --radius:14px;
+  }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:#05060E;
+    color:var(--text);
+    font-family:"Manrope",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:rgba(56,225,240,.25);}
 
-        .logo {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
+  /* ---------- lava lamp background ---------- */
+  .lava{
+    position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #0b1024 0%, #06080f 55%, #05060c 100%);
+  }
+  .blob{
+    position:absolute;border-radius:50%;
+    filter:blur(52px);
+    mix-blend-mode:screen;opacity:.9;
+    will-change:transform;
+  }
+  .b1{width:38vmax;height:38vmax;left:-6%;top:58%;background:radial-gradient(circle at 35% 35%,#FF2D9B,transparent 70%);animation:lava1 19s ease-in-out infinite;}
+  .b2{width:34vmax;height:34vmax;left:62%;top:8%;background:radial-gradient(circle at 40% 40%,#9A2BFF,transparent 70%);animation:lava2 24s ease-in-out infinite;}
+  .b3{width:30vmax;height:30vmax;left:20%;top:12%;background:radial-gradient(circle at 40% 40%,#2F6BFF,transparent 70%);animation:lava3 17s ease-in-out infinite;}
+  .b4{width:32vmax;height:32vmax;left:70%;top:60%;background:radial-gradient(circle at 40% 40%,#14E8E8,transparent 70%);animation:lava4 21s ease-in-out infinite;}
+  .b5{width:26vmax;height:26vmax;left:34%;top:64%;background:radial-gradient(circle at 40% 40%,#16E884,transparent 70%);animation:lava5 26s ease-in-out infinite;}
+  .b6{width:24vmax;height:24vmax;left:46%;top:30%;background:radial-gradient(circle at 40% 40%,#FF6A1A,transparent 70%);animation:lava6 15s ease-in-out infinite;}
+  @keyframes lava1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(14vw,-30vh) scale(1.18);}}
+  @keyframes lava2{0%,100%{transform:translate(0,0) scale(1.05);}50%{transform:translate(-12vw,26vh) scale(.9);}}
+  @keyframes lava3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(10vw,34vh) scale(1.2);}}
+  @keyframes lava4{0%,100%{transform:translate(0,0) scale(1.1);}50%{transform:translate(-16vw,-24vh) scale(.95);}}
+  @keyframes lava5{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(18vw,-28vh) scale(1.15);}}
+  @keyframes lava6{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-14vw,30vh) scale(1.25);}}
+  /* light readability veil so text stays crisp over the lava */
+  .veil{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(150% 120% at 50% 40%, rgba(5,7,14,.18), rgba(4,5,11,.55) 100%);
+  }
+  /* keep exposed text crisp over the vibrant background */
+  .hero-content,.sec-head,.craft-copy,.coll-head,.steps{
+    text-shadow:0 2px 20px rgba(3,5,12,.6),0 1px 3px rgba(3,5,12,.5);
+  }
 
-        h1 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 8px;
-        }
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px;}
 
-        .subtitle {
-            color: #666;
-            font-size: 14px;
-        }
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--flame-cyan);
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:.7em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--flame-cyan));
+  }
+  h2.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:500;
+    font-size:clamp(2.1rem,5vw,3.4rem);
+    line-height:1.06;
+    letter-spacing:-.01em;
+    margin:.5rem 0 0;
+  }
+  .lead{color:var(--muted);max-width:56ch;font-size:1.06rem;}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+  .flame-text{
+    background:var(--flame-grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .ember-text{color:var(--ember-soft);}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-weight:600;font-size:.95rem;
+    padding:.85em 1.5em;border-radius:100px;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .2s ease, box-shadow .3s ease, background .3s ease;
+    line-height:1;
+  }
+  .btn-flame{
+    color:#04070F;
+    background:var(--flame-grad);
+    box-shadow:0 0 0 rgba(56,225,240,0);
+  }
+  .btn-flame:hover{transform:translateY(-2px);box-shadow:0 14px 40px -12px rgba(37,99,235,.75);}
+  .btn-ghost{
+    color:var(--text);
+    border-color:var(--line);
+    background:rgba(255,255,255,.02);
+  }
+  .btn-ghost:hover{border-color:var(--flame-cyan);color:#fff;transform:translateY(-2px);}
+  .btn .arrow{transition:transform .2s ease;}
+  .btn:hover .arrow{transform:translateX(3px);}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
+  :focus-visible{outline:2px solid var(--flame-cyan);outline-offset:3px;border-radius:4px;}
 
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.nav.scrolled{
+    background:rgba(10,14,26,.82);
+    backdrop-filter:blur(14px);
+    border-bottom-color:var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .brand{display:flex;align-items:baseline;gap:.55rem;}
+  .brand .mono{
+    font-family:"Great Vibes",cursive;
+    font-size:2rem;line-height:1;
+    background:var(--flame-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    padding-right:2px;
+  }
+  .brand .name{font-family:"Cormorant Garamond",serif;font-size:1.1rem;letter-spacing:.02em;color:var(--text);}
+  .nav-links{display:flex;gap:2.2rem;align-items:center;}
+  .nav-links a{font-size:.92rem;color:var(--muted);font-weight:500;transition:color .2s ease;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{padding:.6em 1.2em;font-size:.86rem;}
+  .menu-btn{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px;}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
+  .flame-glow{
+    position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+    width:min(920px,96vw);height:min(720px,80vh);
+    background:radial-gradient(ellipse 50% 52% at 50% 50%,rgba(3,5,14,.72),rgba(3,5,14,.48) 45%,transparent 74%);
+    filter:blur(30px);
+    animation:flicker 7s ease-in-out infinite;
+  }
+  .ember-glow{
+    position:absolute;left:50%;bottom:-10%;transform:translateX(-50%);
+    width:min(520px,80vw);height:280px;
+    background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(232,176,75,.16),transparent 70%);
+    filter:blur(30px);
+  }
+  .grid-lines{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,#000,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,#000,transparent 80%);
+  }
+  @keyframes flicker{
+    0%,100%{opacity:.85;transform:translate(-50%,-50%) scale(1);}
+    25%{opacity:1;transform:translate(-50.8%,-51%) scale(1.03);}
+    50%{opacity:.78;transform:translate(-49.4%,-49.5%) scale(.98);}
+    75%{opacity:.95;transform:translate(-50.4%,-50.6%) scale(1.02);}
+  }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
+  .hero-content{position:relative;z-index:2;text-align:center;margin:0 auto;max-width:860px;}
+  .hero-mono{
+    font-family:"Great Vibes",cursive;
+    font-size:clamp(6rem,22vw,13rem);
+    line-height:1.3;
+    padding-top:.14em;
+    background:var(--flame-grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 3px 6px rgba(3,5,14,.85)) drop-shadow(0 10px 40px rgba(3,5,14,.6));
+    margin:0;
+  }
+  .hero-wordmark{
+    font-family:"Cormorant Garamond",serif;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    font-size:clamp(.85rem,2.4vw,1.15rem);
+    color:var(--muted);
+    margin:.2rem 0 0;
+    padding-left:.42em;
+  }
+  .hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:400;
+    font-size:clamp(2rem,5.2vw,3.5rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin:2.2rem auto 0;
+    max-width:18ch;
+  }
+  .hero p.sub{color:var(--muted);max-width:52ch;margin:1.2rem auto 0;font-size:1.08rem;}
+  .hero-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem;}
+  .hero-meta{
+    display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;
+    margin-top:3rem;color:var(--faint);font-size:.82rem;letter-spacing:.04em;
+  }
+  .hero-meta span{display:inline-flex;align-items:center;gap:.5em;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--ember);box-shadow:0 0 10px var(--ember);}
 
-        button:active {
-            transform: translateY(0);
-        }
+  /* ---------- generic section ---------- */
+  section.block{padding:110px 0;position:relative;}
+  .sec-head{margin-bottom:56px;}
 
-        .error {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 8px;
-            display: none;
-        }
+  /* ---------- craft ---------- */
+  .craft-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+  .craft-copy h2{margin-bottom:1.3rem;}
+  .craft-copy p{color:var(--muted);}
+  .craft-copy p + p{margin-top:1.1rem;}
+  .craft-marks{display:flex;gap:2.4rem;margin-top:2.4rem;flex-wrap:wrap;}
+  .mark .n{font-family:"Cormorant Garamond",serif;font-size:2.4rem;line-height:1;color:var(--ember-soft);}
+  .mark .l{font-size:.82rem;color:var(--faint);margin-top:.3rem;letter-spacing:.03em;}
+  .craft-visual{
+    position:relative;aspect-ratio:4/5;border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 42%,rgba(56,225,240,.16),transparent 65%),
+      linear-gradient(160deg,var(--panel),var(--ink));
+    overflow:hidden;display:flex;align-items:center;justify-content:center;
+  }
+  .craft-visual .flame-art{
+    width:min(64%,280px);height:auto;
+    filter:drop-shadow(0 12px 42px rgba(37,99,235,.45));
+  }
+  .flame-outer,.flame-core{transform-box:fill-box;transform-origin:50% 100%;}
+  .flame-outer{animation:flame-sway 4.6s ease-in-out infinite;}
+  .flame-core{animation:flame-flicker 2.6s ease-in-out infinite;}
+  @keyframes flame-sway{0%,100%{transform:rotate(-1.4deg) scaleY(1);}50%{transform:rotate(1.4deg) scaleY(1.02);}}
+  @keyframes flame-flicker{0%,100%{transform:scaleY(1) scaleX(1);opacity:.92;}50%{transform:scaleY(1.07) scaleX(.96);opacity:1;}}
+  .spark{opacity:0;animation:spark-rise 3.6s ease-in infinite;}
+  .spark.s2{animation-delay:1.8s;}
+  @keyframes spark-rise{0%{opacity:0;transform:translateY(0);}25%{opacity:.9;}100%{opacity:0;transform:translateY(-64px);}}
 
-        .success {
-            color: #27ae60;
-            font-size: 14px;
-            margin-top: 8px;
-            display: none;
-        }
+  /* ---------- collections ---------- */
+  .coll{margin-top:38px;}
+  .coll + .coll{margin-top:76px;}
+  .coll-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap;}
+  .coll-head h3{
+    font-family:"Cormorant Garamond",serif;font-weight:500;
+    font-size:clamp(1.7rem,4vw,2.4rem);margin:.3rem 0 0;
+  }
+  .coll-head p{color:var(--muted);margin:.4rem 0 0;max-width:44ch;font-size:.98rem;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:rgba(11,15,28,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    overflow:hidden;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .3s ease;
+  }
+  .card:hover{transform:translateY(-6px);border-color:rgba(56,225,240,.35);box-shadow:0 24px 50px -30px rgba(37,99,235,.6);}
+  .slot{
+    aspect-ratio:1/1;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+    background:
+      repeating-linear-gradient(135deg,rgba(255,255,255,.015) 0 12px,transparent 12px 24px),
+      linear-gradient(160deg,var(--panel),var(--ink));
+    color:var(--faint);
+  }
+  .slot::after{content:"";position:absolute;inset:14px;border:1px dashed rgba(255,255,255,.08);border-radius:8px;}
+  .slot .ph-icon{width:30px;height:30px;opacity:.55;}
+  .slot .ph-text{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;}
+  .card-cap{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .card-cap .t{font-family:"Cormorant Garamond",serif;font-size:1.2rem;}
+  .card-cap .meta{font-size:.78rem;color:var(--faint);}
+  .tag{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--flame-cyan);border:1px solid rgba(56,225,240,.3);padding:.3em .7em;border-radius:100px;}
 
-        .dashboard {
-            display: none;
-        }
+  /* ---------- process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step;}
+  .step{border-top:1px solid var(--line);padding-top:22px;position:relative;}
+  .step .num{font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--flame-cyan);line-height:1;}
+  .step h4{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:1.35rem;margin:.7rem 0 .5rem;}
+  .step p{color:var(--muted);font-size:.94rem;margin:0;}
+  .step::before{content:"";position:absolute;top:-1px;left:0;width:34px;height:1px;background:var(--flame-grad);}
 
-        .dashboard.active {
-            display: block;
-        }
+  /* ---------- commission / contact ---------- */
+  .commission{
+    border:1px solid var(--line);border-radius:22px;
+    background:
+      radial-gradient(ellipse 70% 80% at 12% -10%,rgba(37,99,235,.18),transparent 55%),
+      radial-gradient(ellipse 60% 90% at 100% 120%,rgba(232,176,75,.10),transparent 55%),
+      rgba(9,12,24,.58);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    padding:56px;
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;
+  }
+  .commission .intro h2{margin-bottom:1rem;}
+  .commission .intro p{color:var(--muted);}
+  .commission .contact-line{margin-top:1.8rem;font-size:.94rem;color:var(--muted);}
+  .commission .contact-line a{color:var(--ember-soft);}
 
-        .nav {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 32px;
-            border-bottom: 2px solid #f0f0f0;
-        }
+  form.commission-form{display:grid;gap:18px;}
+  .field{display:grid;gap:.5rem;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  input,select,textarea{
+    font-family:inherit;font-size:1rem;color:var(--text);
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--line);border-radius:10px;
+    padding:.85em 1em;width:100%;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  input::placeholder,textarea::placeholder{color:var(--faint);}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--flame-cyan);background:rgba(56,225,240,.04);}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396A0B5' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1em center;padding-right:2.4em;}
+  textarea{resize:vertical;min-height:120px;}
+  .form-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .form-note{font-size:.78rem;color:var(--faint);max-width:34ch;}
 
-        .nav-btn {
-            flex: 1;
-            padding: 12px;
-            background: none;
-            border: none;
-            border-bottom: 3px solid transparent;
-            color: #666;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+  /* ---------- payment CTA ---------- */
+  .pay-cta{margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--line);}
+  .pay-cta .pay-label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 .7rem;}
+  .pay-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
+  .btn-pay[disabled]{opacity:.5;cursor:not-allowed;filter:grayscale(.3);}
+  .pay-hint{font-size:.8rem;color:var(--muted);margin:.7rem 0 0;}
 
-        .nav-btn.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
+  /* ---------- admin modal ---------- */
+  .foot-admin{margin-top:14px;}
+  .foot-admin button{
+    background:none;border:0;color:var(--faint);font:inherit;font-size:.8rem;
+    cursor:pointer;padding:2px 0;letter-spacing:.04em;transition:color .2s ease;
+  }
+  .foot-admin button:hover{color:var(--muted);}
 
-        .section {
-            display: none;
-        }
+  .modal-overlay{
+    position:fixed;inset:0;z-index:100;display:none;
+    align-items:center;justify-content:center;padding:24px;
+    background:rgba(3,5,12,.72);backdrop-filter:blur(6px);
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    width:100%;max-width:520px;max-height:90vh;overflow:auto;
+    border:1px solid var(--line);border-radius:18px;
+    background:rgba(10,13,24,.96);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.8);
+    padding:34px;
+  }
+  .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;}
+  .modal-head h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:1.7rem;margin:0;}
+  .modal-head .sub{font-size:.82rem;color:var(--faint);margin:.2rem 0 0;}
+  .modal-close{background:none;border:0;color:var(--muted);font-size:1.4rem;line-height:1;cursor:pointer;padding:4px;}
+  .modal-close:hover{color:#fff;}
+  .modal .field{margin-bottom:16px;}
+  .lock-note{
+    font-size:.76rem;color:var(--faint);line-height:1.5;
+    background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;margin-top:6px;
+  }
+  .err{color:#FF8497;font-size:.82rem;margin:8px 0 0;min-height:1em;}
+  .admin-panel{display:none;}
+  .admin-panel.show{display:block;}
+  .status-pill{display:inline-flex;align-items:center;gap:.5em;font-size:.8rem;padding:.35em .8em;border-radius:100px;border:1px solid var(--line);}
+  .status-pill.on{color:#7CF0B0;border-color:rgba(124,240,176,.35);}
+  .status-pill.off{color:var(--muted);}
+  .snippet{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;
+    background:#05070F;border:1px solid var(--line);border-radius:8px;
+    padding:12px 14px;margin-top:8px;color:#9FE7D0;white-space:pre-wrap;word-break:break-all;
+  }
+  .mini-btn{font-size:.82rem;padding:.6em 1.1em;}
 
-        .section.active {
-            display: block;
-        }
+  /* ---------- footer ---------- */
+  footer.site{
+    border-top:1px solid var(--line);padding:60px 0 40px;margin-top:20px;
+    position:relative;
+    background:linear-gradient(rgba(5,7,14,.55), rgba(5,7,14,.74));
+    text-shadow:0 1px 10px rgba(3,5,12,.7);
+  }
+  .foot-grid{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+  .foot-brand .mono{font-family:"Great Vibes",cursive;font-size:2.9rem;line-height:1.35;padding-top:.12em;background:var(--flame-grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 8px rgba(3,5,14,.7));}
+  .foot-brand p{color:var(--muted);font-size:.9rem;max-width:34ch;margin:.6rem 0 0;}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .foot-col h5{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem;}
+  .foot-col a{display:block;color:#CBD2E0;font-size:.92rem;padding:.25rem 0;transition:color .2s ease;}
+  .foot-col a:hover{color:#fff;}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;}
 
-        .property-item {
-            padding: 16px;
-            background: #f9f9f9;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-        }
+  /* ---------- reveal ---------- */
+  [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  [data-reveal].in{opacity:1;transform:none;}
 
-        .property-item h3 {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .menu-btn{display:block;}
+    .craft-grid{grid-template-columns:1fr;gap:40px;}
+    .craft-visual{aspect-ratio:16/11;order:-1;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);gap:32px 20px;}
+    .commission{grid-template-columns:1fr;gap:36px;padding:36px 26px;}
+  }
+  @media (max-width:560px){
+    body{font-size:16px;}
+    .wrap{padding:0 20px;}
+    section.block{padding:80px 0;}
+    .grid{grid-template-columns:1fr;}
+    .row2{grid-template-columns:1fr;}
+    .hero-meta{gap:1rem;}
+  }
 
-        .property-item p {
-            font-size: 13px;
-            color: #666;
-        }
-
-        .logout-btn {
-            width: 100%;
-            padding: 12px;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .loading {
-            text-align: center;
-            color: #666;
-        }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto;}
+    [data-reveal]{opacity:1;transform:none;transition:none;}
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="login" id="loginForm">
-            <div class="header">
-                <div class="logo">🌿</div>
-                <h1>LandscapeFlow Pro</h1>
-                <p class="subtitle">Landscaping Management System</p>
-            </div>
 
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="email">Username or Email</label>
-                    <input type="text" id="email" placeholder="username or email" required>
-                </div>
+<div class="lava" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+  <div class="blob b5"></div>
+  <div class="blob b6"></div>
+</div>
+<div class="veil" aria-hidden="true"></div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="BlueFlameDesigns home">
+      <span class="mono">BFD</span>
+      <span class="name">BlueFlameDesigns</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#craft">The craft</a>
+      <a href="#jewelry">Jewelry</a>
+      <a href="#clothing">Clothing</a>
+      <a href="#process">Process</a>
+      <a href="#commission" class="btn btn-flame nav-cta">Start a commission</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
 
-                <button type="submit">Login</button>
+<!-- ===================== HERO ===================== -->
+<a id="top"></a>
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid-lines"></div>
+    <div class="flame-glow"></div>
+    <div class="ember-glow"></div>
+  </div>
+  <div class="wrap hero-content">
+    <p class="hero-mono">BFD</p>
+    <p class="hero-wordmark">Blue&nbsp;Flame&nbsp;Designs</p>
+    <h1>Where raw material meets the <span class="flame-text">blue flame</span>.</h1>
+    <p class="sub">Custom jewelry and custom clothing, made by hand — one piece at a time. No two commissions alike.</p>
+    <div class="hero-actions">
+      <a href="#commission" class="btn btn-flame">Start a commission <span class="arrow">→</span></a>
+      <a href="#jewelry" class="btn btn-ghost">See the work</a>
+    </div>
+    <div class="hero-meta">
+      <span><i class="dot"></i> Handmade in Charlotte, NC</span>
+      <span><i class="dot"></i> Commissions open</span>
+      <span><i class="dot"></i> One of one</span>
+    </div>
+  </div>
+</section>
 
-                <div class="error" id="loginError"></div>
-                <div class="success" id="loginSuccess"></div>
-            </form>
+<!-- ===================== CRAFT ===================== -->
+<section class="block" id="craft">
+  <div class="wrap craft-grid">
+    <div class="craft-copy" data-reveal>
+      <span class="eyebrow">The craft</span>
+      <h2 class="section-title">The blue flame is the honest part.</h2>
+      <p>The hottest, most precise point of any flame burns blue — it's the part that does the real work, where metal gives and something new takes shape. That's the standard every piece here is held to.</p>
+      <p>Everything is made by hand, to order. You bring the idea — a ring, a pendant, a jacket, a full look — and it's designed, quoted, and built for you alone. Nothing mass-produced, nothing off a shelf.</p>
+      <div class="craft-marks">
+        <div class="mark"><div class="n">100%</div><div class="l">Made by hand</div></div>
+        <div class="mark"><div class="n">1 of 1</div><div class="l">Every commission</div></div>
+        <div class="mark"><div class="n">2</div><div class="l">Jewelry &amp; clothing</div></div>
+      </div>
+    </div>
+    <div class="craft-visual" data-reveal aria-hidden="true">
+      <svg class="flame-art" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blue flame">
+        <defs>
+          <linearGradient id="fOuter" x1="100" y1="255" x2="100" y2="28" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#7C3AED"/>
+            <stop offset=".45" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#38E1F0"/>
+          </linearGradient>
+          <linearGradient id="fCore" x1="100" y1="240" x2="100" y2="76" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#38E1F0"/>
+            <stop offset="1" stop-color="#E4FBFF"/>
+          </linearGradient>
+          <radialGradient id="fGlow" cx="50%" cy="60%" r="55%">
+            <stop offset="0" stop-color="#38E1F0" stop-opacity=".45"/>
+            <stop offset="1" stop-color="#38E1F0" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="100" cy="168" rx="92" ry="112" fill="url(#fGlow)"/>
+        <path class="flame-outer" fill="url(#fOuter)"
+          d="M100 250 C 55 235 45 190 60 150 C 70 122 95 120 85 90 C 78 66 95 45 108 28 C 120 55 145 90 145 145 C 145 200 130 235 100 250 Z"/>
+        <path class="flame-core" fill="url(#fCore)"
+          d="M100 238 C 78 226 72 198 82 172 C 89 153 104 150 99 128 C 95 110 108 95 116 80 C 124 102 128 130 126 156 C 124 196 116 228 100 238 Z"/>
+        <circle class="spark s1" cx="122" cy="118" r="3" fill="#9EEBFF"/>
+        <circle class="spark s2" cx="84" cy="138" r="2.4" fill="#7FD8FF"/>
+      </svg>
+    </div>
+  </div>
+</section>
 
-            <p style="text-align: center; margin-top: 20px; font-size: 13px; color: #666;">
-                Demo: john@company.com / pass123
-            </p>
-        </div>
-
-        <div class="dashboard" id="dashboard">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h1>Dashboard</h1>
-                <button class="logout-btn" onclick="handleLogout()" style="width: auto; margin: 0; padding: 8px 16px; font-size: 14px;">Logout</button>
-            </div>
-
-            <div class="nav" id="navBar">
-                <button class="nav-btn active" onclick="switchSection('properties')">Properties</button>
-                <button class="nav-btn" onclick="switchSection('schedules')">Schedules</button>
-            </div>
-
-            <div class="section active" id="properties">
-                <h2>Properties</h2>
-                <form onsubmit="handleAddProperty(event)" style="margin-bottom: 24px;">
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" placeholder="123 Main St" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" placeholder="Charlotte" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="size">Size (sq ft)</label>
-                        <input type="number" id="size" placeholder="5000" required>
-                    </div>
-                    <button type="submit">Add Property</button>
-                </form>
-
-                <div id="propertiesList" class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading properties...</p>
-                </div>
-            </div>
-
-            <div class="section" id="schedules">
-                <h2>Schedules</h2>
-                <form onsubmit="handleAddSchedule(event)" style="margin-bottom: 24px;">
-                    <div class="form-group">
-                        <label for="scheduleDate">Date</label>
-                        <input type="date" id="scheduleDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="scheduleTime">Time</label>
-                        <input type="time" id="scheduleTime" required>
-                    </div>
-                    <button type="submit">Add Schedule</button>
-                </form>
-
-                <div id="schedulesList" class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading schedules...</p>
-                </div>
-            </div>
-
-            <div class="section" id="users">
-                <h2>Users</h2>
-                <div id="usersList" class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading users...</p>
-                </div>
-            </div>
-
-            <div class="error" id="dashboardError"></div>
-        </div>
+<!-- ===================== COLLECTIONS ===================== -->
+<section class="block" id="jewelry" style="padding-bottom:60px;">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">The work</span>
+      <h2 class="section-title">Collections &amp; commissions</h2>
+      <p class="lead" style="margin-top:1rem;">A place to show finished pieces and past commissions. Photos drop straight into these slots as the work comes in.</p>
     </div>
 
-    <script>
-        const API_URL = localStorage.getItem('apiUrl') || '';
-        let token = localStorage.getItem('token');
-        let currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+    <!-- Jewelry -->
+    <div class="coll" data-reveal>
+      <div class="coll-head">
+        <div>
+          <span class="eyebrow">01 — Jewelry</span>
+          <h3>Custom jewelry</h3>
+          <p>Rings, pendants, chains and one-off pieces — designed around you and finished by hand.</p>
+        </div>
+        <a href="#commission" class="btn btn-ghost">Commission a piece</a>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Ring</span></div>
+        </article>
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Pendant</span></div>
+        </article>
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Chain</span></div>
+        </article>
+      </div>
+    </div>
 
-        function isAdmin() {
-            return currentUser && currentUser.role === 'admin';
-        }
+    <!-- Clothing -->
+    <div class="coll" id="clothing" data-reveal>
+      <div class="coll-head">
+        <div>
+          <span class="eyebrow">02 — Clothing</span>
+          <h3>Custom clothing</h3>
+          <p>Made-to-measure garments and custom looks — cut, sewn and finished to fit you.</p>
+        </div>
+        <a href="#commission" class="btn btn-ghost">Commission a look</a>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Jacket</span></div>
+        </article>
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Top</span></div>
+        </article>
+        <article class="card">
+          <div class="slot"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg><span class="ph-text">Add photo</span></div>
+          <div class="card-cap"><span class="t">Piece name</span><span class="tag">Full look</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function setupAdminUI() {
-            if (!isAdmin()) return;
-            const navBar = document.getElementById('navBar');
-            if (!document.getElementById('usersNavBtn')) {
-                const btn = document.createElement('button');
-                btn.id = 'usersNavBtn';
-                btn.className = 'nav-btn';
-                btn.textContent = 'Users';
-                btn.onclick = () => switchSection('users', btn);
-                navBar.appendChild(btn);
-            }
-        }
+<!-- ===================== PROCESS ===================== -->
+<section class="block" id="process">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title">From idea to finished piece.</h2>
+    </div>
+    <div class="steps" data-reveal>
+      <div class="step">
+        <div class="num">01</div>
+        <h4>Talk it through</h4>
+        <p>Send your idea, references and rough budget. We shape the concept together.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h4>Design &amp; quote</h4>
+        <p>You get a design direction, materials and a firm price before anything is made.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h4>Made by hand</h4>
+        <p>The piece is built to order — with progress shots along the way.</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h4>Yours to keep</h4>
+        <p>Finished, checked and delivered. One of one, made only for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function initDashboard() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('dashboard').classList.add('active');
-            setupAdminUI();
-            loadProperties();
-            loadSchedules();
-        }
+<!-- ===================== COMMISSION ===================== -->
+<section class="block" id="commission">
+  <div class="wrap">
+    <div class="commission" data-reveal>
+      <div class="intro">
+        <span class="eyebrow">Commissions open</span>
+        <h2 class="section-title">Start your <span class="ember-text">custom piece</span>.</h2>
+        <p>Tell me what you have in mind — jewelry, clothing, or both. I'll follow up with ideas, materials and a quote. No obligation.</p>
+        <p class="contact-line">Prefer email? Reach out at <a href="mailto:hello@blueflamedesigns.com">hello@blueflamedesigns.com</a></p>
 
-        if (token) {
-            initDashboard();
-        }
+        <div class="pay-cta">
+          <p class="pay-label">Ready to reserve?</p>
+          <div class="pay-row">
+            <a id="payButton" class="btn btn-flame btn-pay" href="#" target="_blank" rel="noopener">Pay a deposit <span class="arrow">→</span></a>
+          </div>
+          <p class="pay-hint" id="payHint">Secure payment — powered by your linked Stripe or PayPal account.</p>
+        </div>
+      </div>
 
-        async function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorEl = document.getElementById('loginError');
-            const successEl = document.getElementById('loginSuccess');
+      <!-- Netlify Forms: works automatically on deploy. Rename/point the email in Netlify > Forms. -->
+      <form name="commission" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="commission-form" action="#commission">
+        <input type="hidden" name="form-name" value="commission" />
+        <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
 
-            try {
-                const response = await fetch(`${API_URL}/api/auth/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
+        <div class="row2">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="First and last" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required />
+          </div>
+        </div>
 
-                const data = await response.json();
+        <div class="field">
+          <label for="type">What are you after?</label>
+          <select id="type" name="type" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="jewelry">Custom jewelry</option>
+            <option value="clothing">Custom clothing</option>
+            <option value="both">Both / a full look</option>
+            <option value="unsure">Not sure yet</option>
+          </select>
+        </div>
 
-                if (!response.ok) {
-                    errorEl.textContent = data.error || 'Login failed';
-                    errorEl.style.display = 'block';
-                    return;
-                }
+        <div class="field">
+          <label for="details">Tell me about it</label>
+          <textarea id="details" name="details" placeholder="The idea, occasion, materials, timeline, rough budget — whatever you've got." required></textarea>
+        </div>
 
-                token = data.token;
-                currentUser = data.user;
-                localStorage.setItem('token', token);
-                localStorage.setItem('apiUrl', API_URL);
-                localStorage.setItem('user', JSON.stringify(currentUser));
-                successEl.textContent = 'Login successful!';
-                successEl.style.display = 'block';
+        <div class="form-foot">
+          <button type="submit" class="btn btn-flame">Send request <span class="arrow">→</span></button>
+          <p class="form-note">You'll hear back within a couple of days.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
-                setTimeout(() => {
-                    initDashboard();
-                }, 500);
-            } catch (error) {
-                errorEl.textContent = 'Connection error: ' + error.message;
-                errorEl.style.display = 'block';
-            }
-        }
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="mono">BFD</div>
+        <p>BlueFlameDesigns — custom-made jewelry and clothing, handcrafted one piece at a time.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Explore</h5>
+          <a href="#craft">The craft</a>
+          <a href="#jewelry">Jewelry</a>
+          <a href="#clothing">Clothing</a>
+          <a href="#process">Process</a>
+        </div>
+        <div class="foot-col">
+          <h5>Connect</h5>
+          <a href="#commission">Start a commission</a>
+          <a href="mailto:hello@blueflamedesigns.com">Email</a>
+          <a href="#" aria-label="Instagram (add link)">Instagram</a>
+          <a href="#" aria-label="TikTok (add link)">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> BlueFlameDesigns. All rights reserved.</span>
+      <span>Made by hand in Charlotte, NC</span>
+    </div>
+    <div class="foot-admin">
+      <button id="adminOpen" type="button">Admin</button>
+    </div>
+  </div>
+</footer>
 
-        async function loadProperties() {
-            try {
-                const response = await fetch(`${API_URL}/api/properties`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const properties = await response.json();
+<!-- ===================== ADMIN MODAL ===================== -->
+<div class="modal-overlay" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="adminTitle">Admin</h3>
+        <p class="sub" id="adminSub">Sign in to manage payments</p>
+      </div>
+      <button class="modal-close" id="adminClose" aria-label="Close">✕</button>
+    </div>
 
-                const list = document.getElementById('propertiesList');
-                if (properties.length === 0) {
-                    list.innerHTML = '<p style="text-align: center; color: #666;">No properties yet. Add one above!</p>';
-                } else {
-                    list.innerHTML = properties.map(p => `
-                        <div class="property-item">
-                            <h3>${p.address}</h3>
-                            <p>${p.city} • ${p.size} sq ft</p>
-                            ${isAdmin() ? `<button onclick="deleteProperty('${p._id}')" style="width:auto;padding:4px 10px;font-size:12px;background:#e74c3c;margin-top:8px;">Delete</button>` : ''}
-                        </div>
-                    `).join('');
-                }
-            } catch (error) {
-                document.getElementById('propertiesList').innerHTML = `<p style="color: #e74c3c;">Error loading properties</p>`;
-            }
-        }
+    <!-- login -->
+    <div id="loginView">
+      <div class="field">
+        <label for="adminUser">Username</label>
+        <input id="adminUser" type="text" autocomplete="off" placeholder="Username" />
+      </div>
+      <div class="field">
+        <label for="adminPass">Password</label>
+        <input id="adminPass" type="password" autocomplete="off" placeholder="Password" />
+      </div>
+      <p class="err" id="loginErr"></p>
+      <button class="btn btn-flame" id="adminLogin" type="button">Unlock</button>
+      <div class="lock-note">
+        Basic access gate only. On a static site this can't be truly secured, so never store secret keys or account passwords here — your payment link carries no secrets. For real access control, use Netlify password protection.
+      </div>
+    </div>
 
-        async function deleteProperty(id) {
-            if (!confirm('Delete this property?')) return;
-            await fetch(`${API_URL}/api/properties/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            loadProperties();
-        }
+    <!-- panel -->
+    <div class="admin-panel" id="adminPanel">
+      <p style="margin:0 0 14px;">Payment status: <span class="status-pill off" id="statusPill">Not linked</span></p>
+      <div class="field">
+        <label for="linkInput">Stripe Payment Link or PayPal URL</label>
+        <input id="linkInput" type="url" placeholder="https://buy.stripe.com/…  or  https://paypal.me/…" />
+      </div>
+      <div class="pay-row">
+        <button class="btn btn-flame mini-btn" id="applyLink" type="button">Preview on site</button>
+        <button class="btn btn-ghost mini-btn" id="clearLink" type="button">Clear</button>
+        <button class="btn btn-ghost mini-btn" id="adminLogout" type="button" style="margin-left:auto;">Sign out</button>
+      </div>
+      <div class="lock-note" style="margin-top:16px;">
+        <strong style="color:var(--muted);">Preview vs. permanent.</strong> “Preview” updates the button for this browser session only. To make it live for every visitor, paste your link into the <code>PAYMENT_LINK</code> line at the top of the page script and redeploy:
+        <div class="snippet" id="snippet">const PAYMENT_LINK = ""; // paste your Stripe/PayPal link between the quotes</div>
+      </div>
+      <div class="lock-note" style="margin-top:12px;">
+        Get a link: Stripe → <em>Payment Links</em> → create → copy URL. Or PayPal → <em>PayPal.me</em> / a hosted button. Paste only the public link — never secret API keys.
+      </div>
+    </div>
+  </div>
+</div>
 
-        async function loadSchedules() {
-            try {
-                const response = await fetch(`${API_URL}/api/schedules`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const schedules = await response.json();
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-                const list = document.getElementById('schedulesList');
-                if (schedules.length === 0) {
-                    list.innerHTML = '<p style="text-align: center; color: #666;">No schedules yet. Add one above!</p>';
-                } else {
-                    list.innerHTML = schedules.map(s => `
-                        <div class="property-item">
-                            <h3>${s.date} at ${s.time}</h3>
-                            <p>Status: ${s.status || 'Pending'}</p>
-                            ${isAdmin() ? `<button onclick="deleteSchedule('${s._id}')" style="width:auto;padding:4px 10px;font-size:12px;background:#e74c3c;margin-top:8px;">Delete</button>` : ''}
-                        </div>
-                    `).join('');
-                }
-            } catch (error) {
-                document.getElementById('schedulesList').innerHTML = `<p style="color: #e74c3c;">Error loading schedules</p>`;
-            }
-        }
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
 
-        async function deleteSchedule(id) {
-            if (!confirm('Delete this schedule?')) return;
-            await fetch(`${API_URL}/api/schedules/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            loadSchedules();
-        }
+  // mobile menu (simple: reveal links inline)
+  const menuBtn = document.getElementById('menuBtn');
+  const links = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? '' : 'flex';
+    if (!open){
+      links.style.position='absolute';links.style.top='74px';links.style.left='0';links.style.right='0';
+      links.style.flexDirection='column';links.style.gap='0';
+      links.style.background='rgba(10,14,26,.96)';links.style.backdropFilter='blur(14px)';
+      links.style.padding='16px 28px 26px';links.style.borderBottom='1px solid var(--line)';
+    }
+    menuBtn.setAttribute('aria-expanded', String(!open));
+  });
+  // close menu on link click (mobile)
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    if (window.innerWidth <= 900){ links.style.display=''; menuBtn.setAttribute('aria-expanded','false'); }
+  }));
 
-        async function loadUsers() {
-            const list = document.getElementById('usersList');
-            try {
-                const response = await fetch(`${API_URL}/api/users`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (!response.ok) {
-                    list.innerHTML = `<p style="color: #e74c3c;">Not authorized to view users</p>`;
-                    return;
-                }
-                const users = await response.json();
-                list.innerHTML = users.map(u => `
-                    <div class="property-item">
-                        <h3>${u.name || '(no name)'} ${u._id === currentUser.id ? '(you)' : ''}</h3>
-                        <p>${u.email}</p>
-                        <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
-                            <select onchange="changeUserRole('${u._id}', this.value)" style="width:auto; padding:6px;">
-                                ${['admin','manager','crew'].map(r => `<option value="${r}" ${u.role === r ? 'selected' : ''}>${r}</option>`).join('')}
-                            </select>
-                            ${u._id !== currentUser.id ? `<button onclick="deleteUser('${u._id}')" style="width:auto;padding:6px 12px;font-size:12px;background:#e74c3c;">Delete</button>` : ''}
-                        </div>
-                    </div>
-                `).join('');
-            } catch (error) {
-                list.innerHTML = `<p style="color: #e74c3c;">Error loading users</p>`;
-            }
-        }
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
-        async function changeUserRole(id, role) {
-            await fetch(`${API_URL}/api/users/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                body: JSON.stringify({ role })
-            });
-            loadUsers();
-        }
+  /* ====================== PAYMENTS ======================
+     To go live for ALL visitors: paste your Stripe Payment Link
+     or PayPal URL between the quotes below, then redeploy.
+     Leave it as "" to show the "coming soon" state.            */
+  const PAYMENT_LINK = "";
+  /* ===================================================== */
 
-        async function deleteUser(id) {
-            if (!confirm('Delete this user?')) return;
-            await fetch(`${API_URL}/api/users/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            loadUsers();
-        }
+  const payButton = document.getElementById('payButton');
+  const payHint = document.getElementById('payHint');
 
-        async function handleAddProperty(e) {
-            e.preventDefault();
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const size = document.getElementById('size').value;
+  function applyPayLink(url){
+    if (url && /^https?:\/\//i.test(url)){
+      payButton.href = url;
+      payButton.removeAttribute('disabled');
+      payButton.style.pointerEvents = '';
+      payHint.textContent = 'Secure payment — opens in a new tab.';
+    } else {
+      payButton.href = '#';
+      payButton.setAttribute('disabled','');
+      payButton.style.pointerEvents = 'none';
+      payHint.textContent = 'Payments coming soon — a link will be added shortly.';
+    }
+  }
+  applyPayLink(PAYMENT_LINK);
 
-            try {
-                await fetch(`${API_URL}/api/properties`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ address, city, size })
-                });
+  /* ====================== ADMIN GATE ======================
+     Soft, client-side gate only (not real security).        */
+  const ADMIN_USER = "liliya";
+  const ADMIN_PASS = "3396";
 
-                document.getElementById('address').value = '';
-                document.getElementById('city').value = '';
-                document.getElementById('size').value = '';
-                loadProperties();
-            } catch (error) {
-                alert('Error adding property');
-            }
-        }
+  const modal   = document.getElementById('adminModal');
+  const loginV  = document.getElementById('loginView');
+  const panel   = document.getElementById('adminPanel');
+  const sub     = document.getElementById('adminSub');
+  const errEl   = document.getElementById('loginErr');
+  const uEl     = document.getElementById('adminUser');
+  const pEl     = document.getElementById('adminPass');
+  const pill    = document.getElementById('statusPill');
+  const linkIn  = document.getElementById('linkInput');
+  const snippet = document.getElementById('snippet');
+  let unlocked = false;
 
-        async function handleAddSchedule(e) {
-            e.preventDefault();
-            const date = document.getElementById('scheduleDate').value;
-            const time = document.getElementById('scheduleTime').value;
+  const openModal  = () => { modal.classList.add('open'); (unlocked ? linkIn : uEl).focus(); };
+  const closeModal = () => { modal.classList.remove('open'); errEl.textContent=''; pEl.value=''; };
 
-            try {
-                await fetch(`${API_URL}/api/schedules`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ date, time, status: 'Pending' })
-                });
+  document.getElementById('adminOpen').addEventListener('click', openModal);
+  document.getElementById('adminClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
-                document.getElementById('scheduleDate').value = '';
-                document.getElementById('scheduleTime').value = '';
-                loadSchedules();
-            } catch (error) {
-                alert('Error adding schedule');
-            }
-        }
+  function doLogin(){
+    if (uEl.value.trim() === ADMIN_USER && pEl.value === ADMIN_PASS){
+      unlocked = true;
+      loginV.style.display = 'none';
+      panel.classList.add('show');
+      sub.textContent = 'Manage payments';
+      errEl.textContent = '';
+      refreshStatus();
+      linkIn.focus();
+    } else {
+      errEl.textContent = 'Incorrect username or password.';
+      pEl.value = '';
+    }
+  }
+  document.getElementById('adminLogin').addEventListener('click', doLogin);
+  pEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
 
-        function switchSection(section, btn) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(section).classList.add('active');
-            (btn || event.target).classList.add('active');
-            if (section === 'users') loadUsers();
-        }
+  function refreshStatus(){
+    const live = payButton.href && !payButton.hasAttribute('disabled');
+    pill.textContent = live ? 'Link active (this session)' : 'Not linked';
+    pill.className = 'status-pill ' + (live ? 'on' : 'off');
+    snippet.textContent = 'const PAYMENT_LINK = "' + (linkIn.value.trim() || '') + '"; // paste your Stripe/PayPal link here, then redeploy';
+  }
 
-        function handleLogout() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('apiUrl');
-            localStorage.removeItem('user');
-            token = null;
-            currentUser = null;
-            const usersBtn = document.getElementById('usersNavBtn');
-            if (usersBtn) usersBtn.remove();
-            document.getElementById('dashboard').classList.remove('active');
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-        }
+  document.getElementById('applyLink').addEventListener('click', () => {
+    applyPayLink(linkIn.value.trim());
+    refreshStatus();
+  });
+  document.getElementById('clearLink').addEventListener('click', () => {
+    linkIn.value = '';
+    applyPayLink('');
+    refreshStatus();
+  });
+  linkIn.addEventListener('input', refreshStatus);
+  document.getElementById('adminLogout').addEventListener('click', () => {
+    unlocked = false;
+    panel.classList.remove('show');
+    loginV.style.display = '';
+    sub.textContent = 'Sign in to manage payments';
+    uEl.value = ''; pEl.value = '';
+    closeModal();
+  });
 
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js').catch(() => {});
-        }
-    </script>
+</script>
 </body>
 </html>

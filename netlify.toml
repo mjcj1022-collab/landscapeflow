@@ -1,13 +1,13 @@
 [build]
-  command = ""
-  publish = "."
+  command = "pnpm run build"
+  publish = "dist/client"
 
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "10"
+
+# All routes go to index.html so TanStack Router handles client-side navigation
 [[redirects]]
-  from = "/api/*"
-  to = "https://landscapeflow-api.onrender.com/api/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
